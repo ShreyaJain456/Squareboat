@@ -1,0 +1,96 @@
+<div class="outer-container" fxLayout="column">
+  <div class="header-container" fxFlex=6.25 fxLayout="row">
+    <div class="logo" fxFlex=33% fxLayoutAlign="start center" fxLayout="row">
+      <i class="material-icons">favorite</i>
+      italk
+    </div>
+    <div class="tab-group cursor-pointer" fxLayout="row" fxFlex=33%>
+      <div fxLayoutAlign="center center" fxFlex fxLayoutGap=8px [ngClass]="{'selected-tab' : tabSelectIndex == 1}" (click)="selectTab(1)">
+        <i class="material-icons disabled-text" *ngIf="tabSelectIndex != 1">people_outline</i>
+        <i class="material-icons" *ngIf="tabSelectIndex == 1">people</i>
+        <span [ngClass]="{'bold' : tabSelectIndex == 1, 'disabled-text' : tabSelectIndex != 1}">Groups</span>
+      </div>
+      <div fxLayoutAlign="center center" fxFlex fxLayoutGap=8px fxLayout="row" [ngClass]="{'selected-tab' : tabSelectIndex == 2}"
+        (click)="selectTab(2)">
+        <i class="material-icons disabled-text" *ngIf="tabSelectIndex != 2">chat_bubble_outline</i>
+        <i class="material-icons" *ngIf="tabSelectIndex == 2">chat_bubble</i>
+        <span [ngClass]="{'bold' : tabSelectIndex == 2, 'disabled-text' : tabSelectIndex != 2}">Messages</span>
+      </div>
+      <div fxLayoutAlign="center center" fxFlex fxLayoutGap=8px fxLayout="row" [ngClass]="{'selected-tab' : tabSelectIndex == 3}"
+        (click)="selectTab(3)">
+        <i class="material-icons" [ngClass]="{'disabled-text' : tabSelectIndex != 3}">videocam</i>
+        <span [ngClass]="{'bold' : tabSelectIndex == 3, 'disabled-text' : tabSelectIndex != 3}">Video Calls</span>
+      </div>
+      <div class="tab-select-line" [style.left]="left + '%'"></div>
+    </div>
+    <div fxFlex fxLayoutAlign="end center">
+      <div fxLayoutAlign="end center">
+        <i class="material-icons">help_outline</i>
+      </div>
+      <div fxFlexOffset=24px fxLayoutAlign="end center">
+        <i class="material-icons notification">notifications_none</i>
+      </div>
+      <div fxFlexOffset=24px fxLayout="row" fxLayoutAlign="end center">
+        <img [src]="imageUrl" class="header-profile">
+        <div class="bold">Robin Wang</div>
+        <div fxLayoutAlign="end center">
+          <i class="material-icons">arrow_drop_down</i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-container" fxLayout="row" fxFlex=82.5>
+    <div fxFlex=18.33 class="left-container" fxLayoutAlign="start center" fxLayout="column">
+      <img class="image-container" [src]="imageUrl">
+      <div fxFlexOffset=3% class="bold">Robin Wang</div>
+      <div fxFlexOffset=3% class="h5 status disabled-text">Life starts at the end of your comfort issue</div>
+      <div fxFlex fxFlexOffset=6% class="menu-list" fxLayout="column" fxLayoutGap=1.25vh>
+        <div class="header selected-header" fxLayoutAlign="start center">
+          <div class="image" fxLayoutAlign="center center">
+            <i class="material-icons">chat_bubble</i>
+          </div>
+          <div class="bold">Messages</div>
+        </div>
+        <div class="item" fxLayout="column" fxLayoutGap=1.25vh>
+          <span class="item-selected bold h5">Chats</span>
+          <span class="disabled-text h5">Send Message</span>
+        </div>
+        <div class="header" fxLayoutAlign="start center">
+          <div class="image" fxLayoutAlign="center center">
+            <i class="material-icons">people_outline</i>
+          </div>
+          <div class="bold">Groups</div>
+        </div>
+        <div class="item" fxLayout="column" fxLayoutGap=1.25vh>
+          <span class="disabled-text h5">History</span>
+          <span class="disabled-text h5">Create Groups</span>
+        </div>
+        <div class="header" fxLayoutAlign="start center">
+          <div class="image" fxLayoutAlign="center center">
+            <i class="material-icons">videocam</i>
+          </div>
+          <div class="bold">Video Calls</div>
+        </div>
+        <div class="item" fxLayout="column" fxLayoutGap=1.25vh>
+          <span class="disabled-text h5">History</span>
+          <span class="disabled-text h5">Calls</span>
+        </div>
+      </div>
+    </div>
+    <div fxFlex=81.67 class="right-container" fxLayout="column">
+      <div fxLayout="row" class="message-name-container" fxLayoutAlign="start center" fxFlex=15.38>
+        <i class="material-icons message-icon">chat_bubble</i>
+        <span class="bold h1" fxFlexOffset=10px>Messages</span>
+      </div>
+      <div class="chat-container" fxFlex=84.62>
+        <mat-card class="chat-card">
+          <app-messages (imageUrl)="imageUrl = $event"></app-messages>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div class="footer-container light disabled-text" fxFlex=11.25 fxLayoutAlign="center center" fxLayout="row">
+      <i class="material-icons">favorite</i>
+    italk
+  </div>
+</div>

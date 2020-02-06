@@ -1,0 +1,113 @@
+
+@import '../../styles';
+.outer-container {
+    background-color : $background-color;
+    width : 100%;
+    height: 100%;
+
+    .header-container {
+        background-color: white;
+        padding-left: 4%;
+        padding-right: 1%;
+
+        .logo {
+            color : $theme-color;
+            i {
+                color: $theme-color !important;
+                margin-right: 6px;
+            }
+        }
+        .tab-group {
+            position: relative;
+            .tab-select-line {
+                position: absolute;
+                width: 33%;
+                bottom: 0px;
+                background-color: $theme-color;
+                height: 2px;
+                transition-duration: 1s;
+            }
+        }
+        .selected-tab {
+            i {
+                color: $theme-color;
+            }
+        }
+        .notification {
+            color: $theme-color !important;
+        }
+        .header-profile {
+            width: 1.6vw;
+            height: 1.6vw;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+    }
+    .content-container {
+        padding-right: 1.66%;
+        .left-container {
+            padding-top: 7.5vh;
+
+            .image-container {
+                width: 8vw;
+                height: 11vh;
+                border-radius: 50%;
+            }
+            .status {
+                width: 11vw;
+                text-align: center;
+                flex-wrap: wrap;
+                word-break: break-all;
+            }
+            .menu-list {
+                width: 66%;
+                .header {
+                    background-color: white;
+                    border-radius: 3px;
+                    height: 4.75vh;
+                    margin-bottom: 1.25vh;
+                    box-shadow : 2px 2px 5px 1px rgba(0,0,0,0.16);
+                    .image {
+                        width: 4.16vw;
+                    }
+                }
+                .item {
+                    padding-left: 4.16vw;
+                    margin-bottom: 1.25vh;
+                    .item-selected {
+                        color: $theme-color;
+                    }
+                }
+                .selected-header {
+                    background-color: $theme-color !important;
+                    color: white !important;
+                    .image {
+                        i {
+                            color: white !important;
+                        }
+                    }
+                }
+            }
+        }
+        .right-container {
+            .message-name-container{
+                height: 15.38%;
+                padding-top: 3.5vh;
+                .message-icon {
+                    color: $theme-color;
+                    font-size: 26px;
+                    margin-top: 6px;
+                }
+            }
+            .chat-container {
+                width: 100%;
+                .chat-card {
+                    height: 100%;
+                    border-radius: 10px;
+                    padding: 0px !important;
+                    background-color: white;
+                }
+            }
+        }
+    }
+}

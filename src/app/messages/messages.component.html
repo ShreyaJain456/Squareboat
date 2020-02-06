@@ -1,0 +1,107 @@
+<div class="outer-container" fxLayout="row">
+  <div class="friends-list-container" fxFlex=35 fxLayout="column">
+    <div class="header" fxFlex=10 fxLayout="row">
+      <div fxFlex fxLayoutAlign="start center" class="bold">
+        Chats
+      </div>
+      <div fxFlex fxLayoutAlign="end center" class="bold">
+        29/30
+      </div>
+    </div>
+    <div fxFlex=90 class="friends-list" fxLayout="column" *ngIf="friendsList?.length">
+      <div fxFlex=22 *ngFor="let friend of friendsList; let friendIndex = index" class="friends-container cursor-pointer" fxLayout="column"
+        [ngClass]="{'friends-selected-container' : friendIndexSelected == friendIndex}" (click)="friendSelected(friendIndex)">
+        <div fxFlex fxLayout="column" class="friends-inner-container" [ngClass]="{'selected' : friendIndexSelected == friendIndex}">
+          <div fxFlex=80 fxLayoutAlign="start center" fxLayout="row">
+            <img [src]="friend.thumbnail" class="photo-container">
+            <div fxLayout="column">
+              <span class="bold" [ngClass]="{'selected-name' : friendIndexSelected == friendIndex}">{{friend.name}}</span>
+              <span class="h5" [ngClass]="{'bold' : friendIndexSelected == friendIndex, 'disabled-text' : friendIndexSelected != friendIndex}">{{friend.previewMsg}}</span>
+            </div>
+          </div>
+          <div fxFlex=20 fxLayoutAlign="start end" fxLayout="row">
+            <div fxFlex fxLayoutAlign="start start" class="h5" [ngClass]="{'bold' : friendIndexSelected == friendIndex, 'disabled-text' : friendIndexSelected != friendIndex}">
+              {{friend.timestamp}}
+            </div>
+            <div fxFlex fxLayoutAlign="end start" class="h5" [ngClass]="{'bold' : friendIndexSelected == friendIndex, 'disabled-text' : friendIndexSelected != friendIndex}">
+              {{friend.stats}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chats-container" fxFlex=65 fxLayout="column">
+    <div class="header bold" fxFlex=10 fxLayout="row">
+      <div class="header-tab selected-tab" fxLayoutAlign="start center" fxLayout="row" fxLayoutGap=10px>
+        <i class="material-icons image-color">visibility</i>
+        <span class="bold">REPLIES</span>
+      </div>
+      <div class="disabled-text header-tab disabled-tab" fxLayoutAlign="start center" fxLayout="row" fxLayoutGap=10px>
+          <i class="material-icons">equalizer</i>
+        <span class="bold">REPORTS</span>
+      </div>
+    </div>
+    <div fxFlex=80 fxLayout="column" *ngIf="messageKeys?.length" class="chat-list">
+      <ng-container *ngFor="let dateBreak of messageKeys">
+        <div fxLayoutAlign="center start" class="h5 disabled-text">{{dateBreak}}</div>
+        <div fxFlexOffset=6px *ngFor="let message of messageMap.get(dateBreak)" class="message">
+          <div class="chat-image-container">
+            <img class="chat-image" [src]="friendImage">
+          </div>
+          <div class="message-text-container" fxLayout="column">
+            <ng-container *ngIf="message.type == TEXT_TYPE">
+              <div class="message-text">{{message.text}}</div>
+            </ng-container>
+            <ng-container *ngIf="message.type == IMAGE_TYPE">
+              <img [src]="message.imageUrl" class="image">
+            </ng-container>
+            <div class="disabled-text h6 message-timeStamp">
+              {{message.timestamp}}
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="new-message" fxFlex=10 fxLayout="row">
+      <div fxFlex=8 fxLayoutAlign="center center">
+        <i class="material-icons add-button cursor-pointer" (click)="closeButtonNav()" [ngClass]="{'add-button-swap' : isCloseButtonDisplayed == false, 'close-button-swap' : isCloseButtonDisplayed}">add_circle</i>
+      </div>
+      <div fxFlex="calc(92% - 66px)" fxLayoutAlign="start center" class="disabled-text">
+        OMG Olivia !!!
+      </div>
+      <div fxFlex=66px fxLayoutAlign="start center">
+        <button type="submit" class="send-button cursor-pointer" fxLayout="row">
+          <i class="material-icons">send</i>
+          <span>Send</span>
+        </button>
+      </div>
+      <div *ngIf="isCloseButtonDisplayed" fxLayout="row" class="add-content cursor-pointer" fxLayoutAlign="start center">
+        <div fxFlex [ngClass]="{'item-selected' : selectedAddItem == 0}" (click)="selectItem(0)" fxLayoutAlign="start center">
+          <i class="material-icons">mic</i>
+          <span class="h4" [ngClass]="{'disabled-text' : selectedAddItem != 0}">Audio</span>
+        </div>
+        <div fxFlex [ngClass]="{'item-selected' : selectedAddItem == 1}" (click)="selectItem(1)" fxLayoutAlign="start center">
+          <i class="material-icons">videocam</i>
+          <span class="h4" [ngClass]="{'disabled-text' : selectedAddItem != 1}">Video</span>
+        </div>
+        <div fxFlex [ngClass]="{'item-selected' : selectedAddItem == 2}" (click)="selectItem(2)" fxLayoutAlign="start center">
+          <i class="material-icons">text_fields</i>
+          <span class="h4" [ngClass]="{'disabled-text' : selectedAddItem != 2}">Text</span>
+        </div>
+        <div fxFlex [ngClass]="{'item-selected' : selectedAddItem == 3}" (click)="selectItem(3)" fxLayoutAlign="start center">
+          <i class="material-icons">image</i>
+          <span class="h4" [ngClass]="{'disabled-text' : selectedAddItem != 3}">Image</span>
+        </div>
+        <div fxFlex [ngClass]="{'item-selected' : selectedAddItem == 4}" (click)="selectItem(4)" fxLayoutAlign="start center">
+          <i class="material-icons">volume_up</i>
+          <span class="h4" [ngClass]="{'disabled-text' : selectedAddItem != 4}">TTS</span>
+        </div>
+        <div fxFlex=120px [ngClass]="{'item-selected' : selectedAddItem == 5}" (click)="selectItem(5)" fxLayoutAlign="start center">
+          <i class="material-icons">web</i>
+          <span class="h4" [ngClass]="{'disabled-text' : selectedAddItem != 5}">Audio & Text</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
